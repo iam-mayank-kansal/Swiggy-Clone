@@ -5,7 +5,7 @@ export default function ResOnlineFood({ ResOnlineFoodData }) {
     const [ResOnlineinfoCards, setResOnlineInfoCards] = useState([]);
 
     useEffect(() => {
-        const info = ResOnlineFoodData?.gridElements?.infoWithStyle?.restaurent || [];
+        const info = ResOnlineFoodData?.gridElements?.infoWithStyle?.restaurants || [];
         setResOnlineInfoCards(info);
     }, [ResOnlineFoodData]);
 
@@ -27,7 +27,7 @@ export default function ResOnlineFood({ ResOnlineFoodData }) {
             </div>
             {/* cards  */}
             <div className="flex flex-wrap">
-                
+
                 {ResOnlineinfoCards.map((item, index) => {
                     return (
                         <div key={index}>

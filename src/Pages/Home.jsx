@@ -32,7 +32,7 @@ export const Home = () => {
             setFullAPI(cards);
             setWhatsOnMind(cards[0]?.card?.card || []);
             setTopRatedResData(cards[1]?.card?.card || []);
-            setResOnlineFoodData(cards[2]?.card?.card || [])
+            setResOnlineFoodData(cards[1]?.card?.card || []);
 
         } catch (error) {
             console.error("Error fetching API data:", error);
@@ -48,10 +48,9 @@ export const Home = () => {
         <>
             <FoodSlider WhatsOnMind={whatsOnMind} />
             <TopRatedRes topRatedResData={TopRatedResData} />
-            {ResOnlineFoodData > 0 && (
+            {ResOnlineFoodData && (
                 <ResOnlineFood ResOnlineFoodData={ResOnlineFoodData} />
             )}
-
         </>
     );
 }
