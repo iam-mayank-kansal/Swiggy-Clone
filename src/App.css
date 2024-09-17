@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Gilroy-ExtraBold';
+    src: url(./assets/fonts/Gilroy-ExtraBold.ttf);
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gilroy-Bold';
+    src: url(./assets/fonts/Gilroy-Bold.ttf);
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gilroy-SemiBold';
+    src: url(./assets/fonts/Gilroy-Bold.ttf);
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gilroy-Medium';
+    src: url(./assets/fonts/Gilroy-Bold.ttf);
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url(./assets/fonts/Gilroy-Medium.ttf);
+    font-style: normal;
+}
+.truncated-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* Limits the text to 1 line */
+    overflow: hidden; /* Ensures that the overflow text is hidden */
+    text-overflow: ellipsis; /* Shows ellipsis (...) when text is truncated */
+    overflow-wrap: break-word;
+  }
+  

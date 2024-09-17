@@ -1,5 +1,5 @@
 import { Heading } from "./Heading";
-import Right_Arrow from "../assets/right-arrow.png";
+import Right_Arrow from "../assets/images/right-arrow.png";
 import { useEffect, useState } from "react";
 import "../styles/FoodSlider.css"
 // import useApi from "../utils/UseApi";

@@ -3,6 +3,7 @@ import { FoodSlider } from "../components/FoodSlider";
 // import { TopRatedRes } from "../components/TopRatedRes";
 import { TopRatedRes } from "../components/TopRatedRes";
 import ResOnlineFood from "../components/ResOnlineFood";
+import { ExploreItemsTemplate } from "../common/Explore";
 
 export const Home = () => {
 
@@ -10,6 +11,9 @@ export const Home = () => {
     const [whatsOnMind, setWhatsOnMind] = useState([]);
     const [TopRatedResData, setTopRatedResData] = useState([]);
     const [ResOnlineFoodData, setResOnlineFoodData] = useState([]);
+    const [BestPlacesToEatAcrossCities, setBestPlacesToEatAcrossCities] = useState([]);
+    const [BestCusinesNearMe, setBestCusinesNearMe] = useState([]);
+    const [ExploreEveryRestaurantsNearMe, setExploreEveryRestaurantsNearMe] = useState([]);
 
     // const fullApi = useApi();
 
@@ -33,6 +37,9 @@ export const Home = () => {
             setWhatsOnMind(cards[0]?.card?.card || []);
             setTopRatedResData(cards[1]?.card?.card || []);
             setResOnlineFoodData(cards[1]?.card?.card || []);
+            setBestPlacesToEatAcrossCities(cards[4]?.card?.card || []);
+            setBestCusinesNearMe(cards[5]?.card?.card || []);
+            setExploreEveryRestaurantsNearMe(cards[6]?.card?.card || []);
 
         } catch (error) {
             console.error("Error fetching API data:", error);
@@ -45,12 +52,15 @@ export const Home = () => {
     console.log("Restaurants with online food delivery in Delhi:", ResOnlineFoodData);
 
     return (
-        <>
+        <main>
             <FoodSlider WhatsOnMind={whatsOnMind} />
             <TopRatedRes topRatedResData={TopRatedResData} />
             {ResOnlineFoodData && (
                 <ResOnlineFood ResOnlineFoodData={ResOnlineFoodData} />
             )}
-        </>
+            <ExploreItemsTemplate BestPlacesToEatAcrossCities={BestPlacesToEatAcrossCities} title={BestPlacesToEatAcrossCities} />
+            <ExploreItemsTemplate BestCusinesNearMe={BestCusinesNearMe} title={BestCusinesNearMe}/>
+            <ExploreItemsTemplate ExploreEveryRestaurantsNearMe={ExploreEveryRestaurantsNearMe} title={ExploreEveryRestaurantsNearMe} />
+        </main>
     );
 }
