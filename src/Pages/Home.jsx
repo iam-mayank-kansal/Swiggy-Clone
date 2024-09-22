@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { FoodSlider } from "../components/FoodSlider";
-// import { TopRatedRes } from "../components/TopRatedRes";
 import { TopRatedRes } from "../components/TopRatedRes";
 import ResOnlineFood from "../components/ResOnlineFood";
 import { ExploreItemsTemplate } from "../common/Explore";
 
 export const Home = () => {
-
     const [fullAPI, setFullAPI] = useState([]);
     const [whatsOnMind, setWhatsOnMind] = useState([]);
     const [TopRatedResData, setTopRatedResData] = useState([]);
@@ -14,8 +12,6 @@ export const Home = () => {
     const [BestPlacesToEatAcrossCities, setBestPlacesToEatAcrossCities] = useState([]);
     const [BestCusinesNearMe, setBestCusinesNearMe] = useState([]);
     const [ExploreEveryRestaurantsNearMe, setExploreEveryRestaurantsNearMe] = useState([]);
-
-    // const fullApi = useApi();
 
     useEffect(() => {
         API_Call();
@@ -34,9 +30,14 @@ export const Home = () => {
 
             const cards = apiDataJson.data?.cards || [];
             setFullAPI(cards);
+
+            console.log("Cards : ",cards);
             setWhatsOnMind(cards[0]?.card?.card || []);
+            console.log("Whats on Mind : ",whatsOnMind);    
             setTopRatedResData(cards[1]?.card?.card || []);
+            console.log("Top Rated Restaurent : ",TopRatedResData);
             setResOnlineFoodData(cards[1]?.card?.card || []);
+            console.log("Restaurent Online Food Data : ",ResOnlineFoodData);
             setBestPlacesToEatAcrossCities(cards[4]?.card?.card || []);
             setBestCusinesNearMe(cards[5]?.card?.card || []);
             setExploreEveryRestaurantsNearMe(cards[6]?.card?.card || []);
@@ -46,11 +47,6 @@ export const Home = () => {
         }
     }
 
-    console.log("Full API Data:", fullAPI);
-    console.log("What's On Mind:", whatsOnMind);
-    console.log("Top Rated Chains in Delhi:", TopRatedResData);
-    console.log("Restaurants with online food delivery in Delhi:", ResOnlineFoodData);
-
     return (
         <main>
             <FoodSlider WhatsOnMind={whatsOnMind} />
@@ -58,9 +54,18 @@ export const Home = () => {
             {ResOnlineFoodData && (
                 <ResOnlineFood ResOnlineFoodData={ResOnlineFoodData} />
             )}
-            <ExploreItemsTemplate BestPlacesToEatAcrossCities={BestPlacesToEatAcrossCities} title={BestPlacesToEatAcrossCities} />
-            <ExploreItemsTemplate BestCusinesNearMe={BestCusinesNearMe} title={BestCusinesNearMe}/>
-            <ExploreItemsTemplate ExploreEveryRestaurantsNearMe={ExploreEveryRestaurantsNearMe} title={ExploreEveryRestaurantsNearMe} />
+            {/* <ExploreItemsTemplate
+                data={BestPlacesToEatAcrossCities}
+                titleHead="Best Places to Eat Across Cities"
+            />
+            <ExploreItemsTemplate
+                data={BestCusinesNearMe}
+                titleHead="Best Cuisines Near Me"
+            />
+            <ExploreItemsTemplate
+                data={ExploreEveryRestaurantsNearMe}
+                titleHead="Explore Every Restaurant Near Me"
+            /> */}
         </main>
     );
 }
