@@ -6,7 +6,7 @@ import "./App.css"
 
 export const AppLayout = () => {
     return (
-        <main className="flex flex-col min-h-screen bg-[#FFFFFF]" style={{fontFamily : 'Gilroy'}}>
+        <main className="flex flex-col min-h-screen bg-[#FFFFFF] font-gilroy" >
             <Navbar />
             <div className="flex-grow">
                 <Outlet />

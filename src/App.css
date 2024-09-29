@@ -2,27 +2,33 @@
     font-family: 'Gilroy-ExtraBold';
     src: url(./assets/fonts/Gilroy-ExtraBold.ttf);
     font-style: normal;
+    font-weight: 800; /* Extra Bold */
 }
 @font-face {
     font-family: 'Gilroy-Bold';
     src: url(./assets/fonts/Gilroy-Bold.ttf);
     font-style: normal;
+    font-weight: 700; /* Bold */
 }
 @font-face {
     font-family: 'Gilroy-SemiBold';
-    src: url(./assets/fonts/Gilroy-Bold.ttf);
+    src: url(./assets/fonts/Gilroy-SemiBold.ttf);
     font-style: normal;
+    font-weight: 600; /* SemiBold */
 }
 @font-face {
     font-family: 'Gilroy-Medium';
-    src: url(./assets/fonts/Gilroy-Bold.ttf);
+    src: url(./assets/fonts/Gilroy-Medium.ttf);
     font-style: normal;
+    font-weight: 500; /* Medium */
 }
 @font-face {
     font-family: 'Gilroy';
-    src: url(./assets/fonts/Gilroy-Medium.ttf);
+    src: url(./assets/fonts/Gilroy-Regular.ttf); /* Assuming regular weight */
     font-style: normal;
+    font-weight: 400; /* Regular */
 }
+
 .truncated-text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -30,5 +36,4 @@
     overflow: hidden; /* Ensures that the overflow text is hidden */
     text-overflow: ellipsis; /* Shows ellipsis (...) when text is truncated */
     overflow-wrap: break-word;
-  }
-  
+}

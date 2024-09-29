@@ -1,5 +1,6 @@
 import { Heading } from "./Heading";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Rating from "../assets/images/Rating.png"
 import "../App.css"
 
@@ -33,20 +34,22 @@ export default function ResOnlineFood({ ResOnlineFoodData }) {
                 {ResOnlineinfoCards.map((item, index) => {
                     // {cloudinaryImageId , name , avgRating , cuisines , areaName} 
                     return (
-                        <div key={index} className="w-[270px] hover:scale-95 duration-150 mb-10 cursor-pointer">
-                            <div className="h-48 w-full overflow-hidden rounded-2xl shadow-lg">
-                                <img className="object-cover object-center h-full w-full" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item.info.cloudinaryImageId}`} alt={item.info.cloudinaryImageId} />
-                            </div>
-                            <div className="pt-3 pl-[10px]">
-                                <h3 className="text-[18px] truncated-text" style={{fontFamily : 'Gilroy-Bold'}} >{item.info.name}</h3>
-                                <div className="flex gap-2 items-center">
-                                    <img src={Rating} alt={Rating} height={10} width={20} />
-                                    <h4 className="font-gilroy">{item.info.avgRating} • {item.info.sla.slaString}</h4>
+                        <Link to="/restaurent/12" key={index}>
+                            <div  className="w-[270px] hover:scale-95 duration-150 mb-10 cursor-pointer">
+                                <div className="h-48 w-full overflow-hidden rounded-2xl shadow-lg">
+                                    <img className="object-cover object-center h-full w-full" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item.info.cloudinaryImageId}`} alt={item.info.cloudinaryImageId} />
                                 </div>
-                                <p className="truncated-text">{item.info.cuisines.join()}</p>
-                                <p>{item.info.areaName}</p>
+                                <div className="pt-3 pl-[10px]">
+                                    <h3 className="text-[18px] truncated-text font-gilroyExtraBold">{item.info.name}</h3>
+                                    <div className="flex gap-2 items-center">
+                                        <img src={Rating} alt={Rating} height={10} width={20} />
+                                        <h4 className="font-gilroyExtraBold">{item.info.avgRating} • {item.info.sla.slaString}</h4>
+                                    </div>
+                                    <p className="truncated-text">{item.info.cuisines.join()}</p>
+                                    <p>{item.info.areaName}</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     )
                 })
                 }

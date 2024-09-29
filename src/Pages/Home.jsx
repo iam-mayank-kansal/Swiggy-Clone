@@ -31,13 +31,9 @@ export const Home = () => {
             const cards = apiDataJson.data?.cards || [];
             setFullAPI(cards);
 
-            console.log("Cards : ",cards);
             setWhatsOnMind(cards[0]?.card?.card || []);
-            console.log("Whats on Mind : ",whatsOnMind);    
             setTopRatedResData(cards[1]?.card?.card || []);
-            console.log("Top Rated Restaurent : ",TopRatedResData);
             setResOnlineFoodData(cards[1]?.card?.card || []);
-            console.log("Restaurent Online Food Data : ",ResOnlineFoodData);
             setBestPlacesToEatAcrossCities(cards[4]?.card?.card || []);
             setBestCusinesNearMe(cards[5]?.card?.card || []);
             setExploreEveryRestaurantsNearMe(cards[6]?.card?.card || []);
@@ -47,25 +43,20 @@ export const Home = () => {
         }
     }
 
+    // Logging the state after the update
+    useEffect(() => {
+        console.log("Updated WhatsOnMind: ", whatsOnMind);
+        console.log("Updated TopRatedResData: ", TopRatedResData);
+        console.log("Updated ResOnlineFoodData: ", ResOnlineFoodData);
+    }, [whatsOnMind, TopRatedResData, ResOnlineFoodData]);
+
     return (
-        <main>
+        <main className="mt-[120px]">
             <FoodSlider WhatsOnMind={whatsOnMind} />
             <TopRatedRes topRatedResData={TopRatedResData} />
             {ResOnlineFoodData && (
                 <ResOnlineFood ResOnlineFoodData={ResOnlineFoodData} />
             )}
-            {/* <ExploreItemsTemplate
-                data={BestPlacesToEatAcrossCities}
-                titleHead="Best Places to Eat Across Cities"
-            />
-            <ExploreItemsTemplate
-                data={BestCusinesNearMe}
-                titleHead="Best Cuisines Near Me"
-            />
-            <ExploreItemsTemplate
-                data={ExploreEveryRestaurantsNearMe}
-                titleHead="Explore Every Restaurant Near Me"
-            /> */}
         </main>
     );
 }

@@ -11,6 +11,7 @@ import { AppLayout } from './App';
 import { SignInPage } from './Pages/SignInPage';
 
 import { Home } from './Pages/Home';
+import { ResPage } from './Pages/ResPage';
 
 const Rout_Link = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const Rout_Link = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/swiggy-corporate",
@@ -45,6 +46,10 @@ const Rout_Link = createBrowserRouter([
         path: "/cart",
         element: < SignInPage />
       },
+      {
+        path: "/restaurent/:resId",
+        element: <ResPage />
+      }
     ],
     errorElement: <Error />
   }
