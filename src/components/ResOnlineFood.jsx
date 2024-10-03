@@ -2,9 +2,11 @@ import { Heading } from "./Heading";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../assets/images/Rating.png"
+import ShimmerCard2 from "./ShimmerCard2";
 import "../App.css"
 
 export default function ResOnlineFood({ ResOnlineFoodData }) {
+
     const [ResOnlineinfoCards, setResOnlineInfoCards] = useState([]);
 
     useEffect(() => {
@@ -29,29 +31,38 @@ export default function ResOnlineFood({ ResOnlineFoodData }) {
 
             </div>
             {/* cards  */}
-            <div className="flex flex-wrap py-5 justify-between">
-
-                {ResOnlineinfoCards.map((item, index) => {
-                    // {cloudinaryImageId , name , avgRating , cuisines , areaName} 
-                    return (
-                        <Link to="/restaurent/12" key={index}>
-                            <div  className="w-[270px] hover:scale-95 duration-150 mb-10 cursor-pointer">
-                                <div className="h-48 w-full overflow-hidden rounded-2xl shadow-lg">
-                                    <img className="object-cover object-center h-full w-full" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item.info.cloudinaryImageId}`} alt={item.info.cloudinaryImageId} />
-                                </div>
-                                <div className="pt-3 pl-[10px]">
-                                    <h3 className="text-[18px] truncated-text font-gilroyExtraBold">{item.info.name}</h3>
-                                    <div className="flex gap-2 items-center">
-                                        <img src={Rating} alt={Rating} height={10} width={20} />
-                                        <h4 className="font-gilroyExtraBold">{item.info.avgRating} • {item.info.sla.slaString}</h4>
+            <div className="flex flex-wrap py-5 justify-between ">
+                {
+                    ResOnlineinfoCards.length === 0 ? (
+                        // Show shimmer cards if InfoCards is empty
+                        <section className="w-full flex justify-between flex-wrap gap-y-4">
+                            {[1, 2, 3, 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map((item, index) => (
+                                <ShimmerCard2 key={index} />
+                            ))}
+                        </section>
+                    ) : (
+                        ResOnlineinfoCards.map((item, index) => {
+                            // {cloudinaryImageId , name , avgRating , cuisines , areaName} 
+                            return (
+                                <Link to={`/restaurent/${item.info.id}`} key={index}>
+                                    <div className="w-[270px] hover:scale-95 duration-150 mb-10 cursor-pointer">
+                                        <div className="h-48 w-full overflow-hidden rounded-2xl shadow-lg">
+                                            <img className="object-cover object-center h-full w-full" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item.info.cloudinaryImageId}`} alt={item.info.cloudinaryImageId} />
+                                        </div>
+                                        <div className="pt-3 pl-[10px]">
+                                            <h3 className="text-[18px] truncated-text font-gilroyExtraBold">{item.info.name}</h3>
+                                            <div className="flex gap-2 items-center">
+                                                <img src={Rating} alt={Rating} height={10} width={20} />
+                                                <h4 className="font-gilroyExtraBold">{item.info.avgRating} • {item.info.sla.slaString}</h4>
+                                            </div>
+                                            <p className="truncated-text">{item.info.cuisines.join()}</p>
+                                            <p>{item.info.areaName}</p>
+                                        </div>
                                     </div>
-                                    <p className="truncated-text">{item.info.cuisines.join()}</p>
-                                    <p>{item.info.areaName}</p>
-                                </div>
-                            </div>
-                        </Link>
+                                </Link>
+                            )
+                        })
                     )
-                })
                 }
             </div>
         </section>

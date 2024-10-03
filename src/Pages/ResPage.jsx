@@ -1,34 +1,36 @@
-import { ResStarter } from "../components/ResStarter"
+import { ResStarter } from "../components/ResStarter";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Heading } from "../components/Heading";
+import usefetch from "../hooks/usefetch";
 
 export const ResPage = () => {
-
-    const [fullAPI, setfullAPI] = useState([]);
-    const [RestaurentDetails, setRestaurentDetails] = useState()
+    const [RestaurentDetails, setRestaurentDetails] = useState(null);
+    const { resId } = useParams();
+    const { APIData, loading, error } = usefetch(`https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65420&lng=77.23730&restaurantId=${resId}`);
 
     useEffect(() => {
-        fetchData();
-        console.log(fullAPI);
-    }, []);
-
-    const fetchData = async () => {
-        try {
-
-            const response = await fetch('https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65420&lng=77.23730&restaurantId=831065&submitAction=ENTER');
-
-            const json = await response.json();
-            setfullAPI(json);
-            setRestaurentDetails(json.data.cards[2])
-            console.log(json);
+        if (APIData && APIData.data && APIData.data.cards) {
+            const restaurantDetails = APIData.data.cards[2] || null;
+            setRestaurentDetails(restaurantDetails);
         }
-        catch (error) {
-            console.error(error)
-        }
-    };
+    }, [APIData]);
+
+    if (loading) {
+        return <section className="max-w-[700px] mx-auto"><Heading name="Loading ..." /></section>;
+    }
+
+    if (error) {
+        return <section className="max-w-[700px] mx-auto"><Heading name={`Error: ${error.message}`} /></section>;
+    }
+
     return (
-        <main className="my-[100px]">
-            <ResStarter RestaurentDetails={RestaurentDetails} />
-            {/* <section className="h-[100vh]"></section> */}
+        <main className="max-w-[700px] mx-auto mt-4">
+            {RestaurentDetails ? (
+                <ResStarter RestaurentDetails={RestaurentDetails} />
+            ) : (
+                <Heading name="No restaurant details available" />
+            )}
         </main>
-    )
-}
+    );
+};

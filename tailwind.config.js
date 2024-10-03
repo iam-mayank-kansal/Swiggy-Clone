@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         gilroy: ['Gilroy', 'sans-serif'],  // Regular
         gilroyExtraBold: ['Gilroy-ExtraBold', 'sans-serif'],  // ExtraBold
+        gilroySemiBold: ['Gilroy-SemiBold', 'sans-serif'],  // SemiBold
       },
     },
   },

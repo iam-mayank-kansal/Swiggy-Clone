@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import LOGO from "/swiggy-logo.png";
+import useOnlineStatus from "../hooks/useOnlineStatus"
 import { Cart_icon, Help_icon, Offer_icon, Search_icon, Sign_in_icon, Swiggy_corporate_icon } from "../utils/Icons";
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const Status = useOnlineStatus();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -20,6 +23,11 @@ export const Navbar = () => {
 
                 {/* Desktop Menu */}
                 <ul className="hidden md:flex gap-10 items-center text-[18px] font-[500]">
+                    <li>
+                        {Status ? <div className="flex items-center gap-2">Online 
+                            <div className="h-4 w-4 bg-green-500 rounded-[50%]"></div></div> : <div className="flex items-center gap-2">Offline
+                            <div className="h-4 w-4 bg-red-600 rounded-[50%]"></div></div>}
+                    </li>
                     <li>
                         <Link to="/swiggy-corporate" className="flex items-center gap-2 hover:text-[#FC8019]">
                             <Swiggy_corporate_icon /> Swiggy Corporate

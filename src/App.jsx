@@ -8,7 +8,7 @@ export const AppLayout = () => {
     return (
         <main className="flex flex-col min-h-screen bg-[#FFFFFF] font-gilroy" >
             <Navbar />
-            <div className="flex-grow">
+            <div className="flex-grow mt-24">
                 <Outlet />
             </div>
             <Footer />
